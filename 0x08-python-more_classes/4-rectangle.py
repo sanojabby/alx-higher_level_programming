@@ -8,214 +8,190 @@ This module is composed by a class that defines a Rectangle
 
 
 
-
-
 class Rectangle:
 
-        """ Class that defines a rectangle """
+    """ Class that defines a rectangle """
 
 
+    def __init__(self, width=0, height=0):
 
-            def __init__(self, width=0, height=0):
+        """ Method that initializes the instance
 
-                        """ Method that initializes the instance
+        Args:
 
-                                Args:
+            width: rectangle width
 
-                                            width: rectangle width
+            height: rectangle height
 
-                                                        height: rectangle height
+        """
 
-                                                                """
 
+        self.width = width
 
+        self.height = height
 
-                                                                        self.width = width
 
-                                                                                self.height = height
+    @property
 
+    def width(self):
 
+        """ method that returns the value of the width
 
-                                                                                    @property
+        Returns:
 
-                                                                                        def width(self):
+            rectangle width
 
-                                                                                                    """ method that returns the value of the width
+        """
 
-                                                                                                            Returns:
 
-                                                                                                                        rectangle width
+        return self.__width
 
-                                                                                                                                """
 
+    @width.setter
 
+    def width(self, value):
 
-                                                                                                                                        return self.__width
+        """ method that defines the width
 
+        Args:
 
+            value: width
 
-                                                                                                                                        @width.setter
+        Raises:
 
-                                                                                                                                            def width(self, value):
+            TypeError: if width is not an integer
 
-                                                                                                                                                        """ method that defines the width
+            ValueError: if width is less than zero
 
-                                                                                                                                                                Args:
+        """
 
-                                                                                                                                                                            value: width
 
-                                                                                                                                                                                    Raises:
+        if not isinstance(value, int):
 
-                                                                                                                                                                                                TypeError: if width is not an integer
+            raise TypeError("width must be an integer")
 
-                                                                                                                                                                                                            ValueError: if width is less than zero
+        if value < 0:
 
-                                                                                                                                                                                                                    """
+            raise ValueError("width must be >= 0")
 
+        self.__width = value
 
 
-                                                                                                                                                                                                                            if not isinstance(value, int):
+    @property
 
-                                                                                                                                                                                                                                            raise TypeError("width must be an integer")
+    def height(self):
 
-                                                                                                                                                                                                                                                if value < 0:
+        """ method that returns the value of the height
 
-                                                                                                                                                                                                                                                                raise ValueError("width must be >= 0")
+        Returns:
 
-                                                                                                                                                                                                                                                                    self.__width = value
+            rectangle height
 
+        """
 
 
-                                                                                                                                                                                                                                                                        @property
+        return self.__height
 
-                                                                                                                                                                                                                                                                            def height(self):
 
-                                                                                                                                                                                                                                                                                        """ method that returns the value of the height
+    @height.setter
 
-                                                                                                                                                                                                                                                                                                Returns:
+    def height(self, value):
 
-                                                                                                                                                                                                                                                                                                            rectangle height
+        """ method that defines the height
 
-                                                                                                                                                                                                                                                                                                                    """
+        Args:
 
+            value: height
 
+        Raises:
 
-                                                                                                                                                                                                                                                                                                                            return self.__height
+            TypeError: if height is not an integer
 
+            ValueError: if height is less than zero
 
+        """
 
-                                                                                                                                                                                                                                                                                                                            @height.setter
 
-                                                                                                                                                                                                                                                                                                                                def height(self, value):
+        if not isinstance(value, int):
 
-                                                                                                                                                                                                                                                                                                                                            """ method that defines the height
+            raise TypeError("height must be an integer")
 
-                                                                                                                                                                                                                                                                                                                                                    Args:
+        if value < 0:
 
-                                                                                                                                                                                                                                                                                                                                                                value: height
+            raise ValueError("height must be >= 0")
 
-                                                                                                                                                                                                                                                                                                                                                                        Raises:
+        self.__height = value
 
-                                                                                                                                                                                                                                                                                                                                                                                    TypeError: if height is not an integer
 
-                                                                                                                                                                                                                                                                                                                                                                                                ValueError: if height is less than zero
+    def area(self):
 
-                                                                                                                                                                                                                                                                                                                                                                                                        """
+        """ Method that calculates the Rectangle area
 
+        Returns:
 
+            rectangle area
 
-                                                                                                                                                                                                                                                                                                                                                                                                                if not isinstance(value, int):
+        """
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                raise TypeError("height must be an integer")
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                    if value < 0:
+        return self.width * self.height
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    raise ValueError("height must be >= 0")
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        self.__height = value
+    def perimeter(self):
 
+        """ Method that calculates the Rectangle perimeter
 
+        Returns:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            def area(self):
+            rectangle perimeter
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        """ Method that calculates the Rectangle area
+        """
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Returns:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            rectangle area
+        if self.width == 0 or self.height == 0:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    """
+            return 0
 
 
+        return (2 * self.width) + (2 * self.height)
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            return self.width * self.height
 
+    def __str__(self):
 
+        """ Method that returns the Rectangle #
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            def perimeter(self):
+        Returns:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        """ Method that calculates the Rectangle perimeter
+            str of the rectangle
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Returns:
+        """
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            rectangle perimeter
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    """
+        rectangle = ""
 
 
+        if self.width == 0 or self.height == 0:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            if self.width == 0 or self.height == 0:
+            return rectangle
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            return 0
 
+        for i in range(self.height):
 
+            rectangle += ("#" * self.width) + "\n"
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                return (2 * self.width) + (2 * self.height)
 
+        return rectangle[:-1]
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                def __str__(self):
+    def __repr__(self):
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            """ Method that returns the Rectangle #
+        """ Method that returns the string represantion of the instance
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Returns:
+        Returns:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                str of the rectangle
+            string represenation of the object
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        """
+        """
 
 
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rectangle = ""
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if self.width == 0 or self.height == 0:
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        return rectangle
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            for i in range(self.height):
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            rectangle += ("#" * self.width) + "\n"
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    return rectangle[:-1]
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    def __repr__(self):
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                """ Method that returns the string represantion of the instance
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Returns:
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    string represenation of the object
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            """
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    return "Rectangle({:d}, {:d})".format(self.width, self.height)
+        return "Rectangle({:d}, {:d})".format(self.width, self.height)
