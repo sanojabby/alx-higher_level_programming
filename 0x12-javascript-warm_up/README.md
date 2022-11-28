@@ -44,4 +44,4 @@
 
 ## Author
 
-* Olly | [GitHub](https://github.com/ollyimanishimwe) | [Twitter](https://twitter.com/ollyImanishimwe)
+* Olly | [GitHub](https://github.com/sanojabby) | [Twitter](https://https://twitter.com/BaptisteSano)
