@@ -2,13 +2,9 @@
 
 """
 
-This script takes in an argument and
+a script that takes in an argument and displays all values in
 
-displays all values in the states
-
-where `name` matches the argument
-
-from the database `hbtn_0e_0_usa`.
+the states table of hbtn_0e_0_usa where name matches the argument
 
 """
 
@@ -18,33 +14,40 @@ import MySQLdb
 from sys import argv
 
 
-if __name__ == '__main__':
-
-    """
-
-    Access to the database and get the states
-
-    from the database.
-
-    """
+if __name__ == "__main__":
 
 
-    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
+    # connect to database
 
-                         passwd=argv[2], db=argv[3])
+    db = MySQLdb.connect(host="localhost",
 
+                         port=3306,
 
-    cur = db.cursor()
+                         user=argv[1],
 
-    cur.execute("SELECT * FROM states \
+                         passwd=argv[2],
 
-                 WHERE name LIKE BINARY '{}' \
-
-                 ORDER BY states.id ASC".format(argv[4]))
-
-    rows = cur.fetchall()
+                         db=argv[3])
 
 
-    for row in rows:
+    # create cursor to exec queries using SQL; match arg given
 
-        print(row)
+    cursor = db.cursor()
+
+    sql_cmd = "SELECT * \
+
+                 FROM states \
+
+                 WHERE name LIKE '{:s}' ORDER BY id ASC".format(argv[4])
+
+    cursor.execute(sql_cmd)
+
+    for state in cursor.fetchall():
+
+        if state[1] == argv[4]:
+
+            print(state)
+
+    cursor.close()
+
+    db.close()
