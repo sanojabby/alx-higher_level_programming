@@ -2,11 +2,9 @@
 
 """
 
-This script lists all states with
+a script that lists all states with a name starting
 
-a `name` starting with the letter `N`
-
-from the database `hbtn_0e_0_usa`.
+with N (upper N) from the database hbtn_0e_0_usa
 
 """
 
@@ -16,32 +14,34 @@ import MySQLdb
 from sys import argv
 
 
-if __name__ == '__main__':
-
-    """
-
-    Access to the database and get the states
-
-    from the database.
-
-    """
-
-    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
-
-                         passwd=argv[2], db=argv[3])
+if __name__ == "__main__":
 
 
-    cur = db.cursor()
+    # connect to database
 
-    cur.execute("SELECT * FROM states \
+    db = MySQLdb.connect(host="localhost",
 
-                 WHERE name LIKE BINARY 'N%' \
+                         port=3306,
 
-                 ORDER BY states.id ASC")
+                         user=argv[1],
 
-    rows = cur.fetchall()
+                         passwd=argv[2],
+
+                         db=argv[3])
 
 
-    for row in rows:
+    # create cursor to exec queries using SQL; filter names starting with 'N'
 
-        print(row)
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+
+    for row in cursor.fetchall():
+
+        if row[1][0] == 'N':
+
+            print(row)
+
+    cursor.close()
+
+    db.close()
