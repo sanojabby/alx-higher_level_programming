@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# This program takes in a URL, sends a GET request to the URL, and displays the body of the response.
+# Take in URL, display body of a 200 response; Usage: ./1-body.sh 5B0.0.0.0:5000/route_1 ; echo ""
 
-curl -sL "$1" -X GET -D ./header -o ./output; if grep -q "200 OK" ./header; then cat ./output; fi
+curl -sL "$1"
